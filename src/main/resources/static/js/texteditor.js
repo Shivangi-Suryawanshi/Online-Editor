@@ -12,7 +12,7 @@ function changeLanguage() {
     let language = $("#languages").val(); 
     
      if(language=="python")
-      editor.setValue("def execute(): \n\t for i in range(10):\n\t\t print i \nexecute()")
+      editor.setValue("def execute(): \n\t for i in range(10):\n\t\t print(i) \nexecute()")
   //java
   if(language=="java"){
 
@@ -48,26 +48,34 @@ using namespace std;
     else if(language == 'java')editor.session.setMode("ace/mode/java");
 }
 
+
+
 function executeCode(){
 console.log($("#languages").val());
 console.log(editor.getSession().getValue());
 
-var d = {
-	            'language': $("#languages").val(),
-	            'code': editor.getSession().getValue()
-	        };
- $.ajax({	        
-        url: "/compiler",
-        contentType: "application/json; charset=utf-8",        
-        dataType: "json",        
-        method: "POST",
-        data: JSON.stringify(d),      
-        success: function(response) {
-            $(".output").text(response)
-        }
-    })
-}
+	var d = { 'language': $("#languages").val(), 'code': editor.getSession().getValue() };
+	 $.ajax({
+	        url: "/compiler",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "json",
+	        method: "POST",
+	        data: JSON.stringify(d),
 
+          success: function(response) {
+               //console.log(response.status);
+               console.log(response.totalsent);
+				$(".output").text(response.totalsent)
+	        },
+
+	      error: function(error){
+	          console.log(error);
+	        },
+
+	    });
+   }
+   
+   
 function codeEditor(){
  let c = `#include <stdio.h>
   int main() {
