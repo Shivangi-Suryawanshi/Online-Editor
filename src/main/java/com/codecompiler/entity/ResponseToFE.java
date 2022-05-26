@@ -1,13 +1,24 @@
 package com.codecompiler.entity;
 
 public class ResponseToFE {
-	private String totalsent;
+private String totalSent;
 
-	public String getTotalsent() {
-		return totalsent;
-	}
+public String getTotalSent() {
+	return totalSent;
+}
 
-	public void setTotalsent(String totalsent) {
-		this.totalsent = totalsent;
-	}
+public void setTotalSent(String totalSent) {
+	this.totalSent = totalSent;
+}
+
+@Override
+public String toString() {
+	return "ResponseToFE [totalSent=" + totalSent + "]";
+}
+
+public ResponseToFE() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
 }
