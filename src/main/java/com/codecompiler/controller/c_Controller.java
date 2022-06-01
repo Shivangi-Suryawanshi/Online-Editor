@@ -27,16 +27,6 @@ import com.codecompiler.service.CommonService;
 public class c_Controller {
 	@Autowired
 	private CommonService commonService;
-	
-	public List<TestCases> getTestCase(int questionId){
-		List<Question>  question= commonService.getQuestion(questionId);	
-		List<TestCases> testCasesCollection = null;
-		for (Question q : question) {
-			testCasesCollection = q.getTestcases();
-		}
-		return testCasesCollection;
-	}
-
 
 	@PostMapping(value = "/ccompiler")
 	@ResponseBody
@@ -54,7 +44,7 @@ public class c_Controller {
 		System.out.println("code"+data.get("code"));
 		int questionId = (int)data.get("questionId");
 		System.out.println("QuestionId:- "+questionId);
-		List<TestCases> testCases = getTestCase(questionId);
+		List<TestCases> testCases = commonService.getTestCase(questionId);
 		
 		// String uid = RandomStringUtils.randomAlphabetic(10);
 		String uid = "HelloC";

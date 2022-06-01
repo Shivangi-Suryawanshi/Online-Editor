@@ -1,9 +1,9 @@
 package com.codecompiler.entity;
-import javax.persistence.*;
+//import javax.persistence.*;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 public class TestCases {

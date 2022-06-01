@@ -1,19 +1,17 @@
 public class Main{
   public static void main(String args[]){
-    
-   String str = args[0], reverseStr = "";
-    
-   int strLength = str.length();
-
-    for (int i = (strLength - 1); i >=0; --i) {
-      reverseStr = reverseStr + str.charAt(i);
-    }
-
-    if (str.equals(reverseStr)) {
-      System.out.println(reverseStr);
-    }
-    else {
-      System.out.println(reverseStr);
-    }
-  }
+int n = Integer.parseInt(args[0]);
+ int r,sum=0,temp;
+temp=n;    
+  while(n>0){    
+   r=n%10;  //getting remainder  
+   sum=(sum*10)+r;    
+   n=n/10;    
+  }    
+  if(temp==sum)    
+   System.out.println(sum);    
+  else    
+   System.out.println(sum); 
+ 
+}
 }

@@ -1,42 +1,32 @@
-#include <iostream>
+ #include <iostream>
 #include<stdlib.h>
 using namespace std;
-  int main(int argc, char** argv) {
-    // int n=atoi(argv[1]);
-    // cout<<n; 
-     
-     int n = atoi(argv[1]);
-     int num = atoi(argv[1]);
-     int digit, rev = 0;
-     n = num;
-
-     do
-     {
-         digit = num % 10;
-         rev = (rev * 10) + digit;
-         num = num / 10;
-     } while (num != 0);
-
-     cout << " The reverse of the number is: " << rev << endl;
-
-     if (n == rev)
-         cout << " The number is a palindrome.";
-     else
-         cout << " The number is not a palindrome.";
-
-    return 0;
+  int main(int argc, char** argv) {    
+      int array[10];
+     int argv_offset = 0;
+int num_numbers = argc - argv_offset;
+for( int i = argv_offset; i < argc; i++ ) {
+    array[i-argv_offset] = atoi(argv[i]);
+  
+} 
+int i, j, a;
+	int n[10];
+//	n=array;
+ for (i = 0; i < argc; ++i){
+      for (j = i + 1; j < argc; ++j){
+         if (array[i] > array[j]){
+            a = array[i];
+            array[i] = array[j];
+            array[j] = a;
+         }
+      }
+   }
+    for (i = 0; i < argc; ++i){
+    	printf("%d ", array[i]);
+    }
+ 
+        return 0;
       
       
   }      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-  
+ 

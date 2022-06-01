@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "server.error.include-exception",
+    "type": "java.lang.String",
+    "description": "A description for 'server.error.include-exception'"
+  },
+  {
+    "name": "server.tomcat.connection-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'server.tomcat.connection-timeout'"
+  },
+  {
+    "name": "server.tomcat.max-swallow-size",
+    "type": "java.lang.String",
+    "description": "A description for 'server.tomcat.max-swallow-size'"
+  },
+  {
+    "name": "server.tomcat.max-http-form-post-size",
+    "type": "java.lang.String",
+    "description": "A description for 'server.tomcat.max-http-form-post-size'"
+  }
+]}

@@ -2,14 +2,14 @@ package com.codecompiler.entity;
 
 import java.util.List;
 
-import javax.persistence.Id;
+//import javax.persistence.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="QuestionAndTestCases")
 public class Question {
 
-	@Id
+	@org.springframework.data.annotation.Id
 	private int questionId;
 	private String question;
 	private List<TestCases> testcases;

@@ -48,8 +48,6 @@ function changeLanguage() {
 		else if ((language) == 'java') editor.session.setMode("ace/mode/java");
 	}
 
-
-
 	function executeCode() {
 	
 		let language = $("#languages").val();
@@ -92,7 +90,7 @@ function executeCodeOfc() {
 function executeCodeOfcpp(){
 	console.log($("#languages").val());
 	console.log(editor.getSession().getValue());
-	var questionId = 2;
+	var questionId = 4;
 	var d = { 'language': $("#languages").val(), 'code': editor.getSession().getValue(), 'questionId': questionId };
 	$.ajax({
 		url: "/cppcompiler",
@@ -114,7 +112,7 @@ function executeCodeOfcpp(){
 function executeCodeOfjava() {
 	console.log($("#languages").val());
 	console.log(editor.getSession().getValue());
-	var questionId = 3;
+	var questionId = 7;
 	var d = { 'language': $("#languages").val(), 'code': editor.getSession().getValue(), 'questionId': questionId };
 	$.ajax({
 		url: "/javacompiler",
@@ -131,12 +129,13 @@ function executeCodeOfjava() {
 			console.log(error);
 		},
 	});
-} 
+}
+ 
 function executeCodeofpython(){
 	console.log($("#languages").val());
 	var questionId = 2;
 	console.log(editor.getSession().getValue());
-	var d = { 'language': $("#languages").val(), 'code': editor.getSession().getValue() };
+	var d = { 'language': $("#languages").val(), 'code': editor.getSession().getValue(), 'questionId': questionId };
 	$.ajax({
 		url: "/pythoncompiler",
 		contentType: "application/json; charset=utf-8",
@@ -145,7 +144,7 @@ function executeCodeofpython(){
 		data: JSON.stringify(d),
 		success: function(response) {
 			//console.log(response.status);
-			console.log(response.totalsent);
+			console.log(response.totalSent);
 			$(".output").text(response.totalSent)
 		},
 		error: function(error) {
