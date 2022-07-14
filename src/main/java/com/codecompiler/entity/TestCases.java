@@ -12,12 +12,17 @@ public class TestCases {
 	private int id;
 	private  String input;	
 	private String output;
-	public TestCases(int id, String input, String output) {
+	
+public TestCases() {
 		super();
-		this.id = id;
-		this.input = input;
-		this.output = output;
+		// TODO Auto-generated constructor stub
 	}
+	//	public TestCases(int id, String input, String output) {
+//		super();
+//		this.id = id;
+//		this.input = input;
+//		this.output = output;
+//	}
 	@Override
 	public String toString() {
 		return "TestCases [id=" + id + ", input=" + input + ", output=" + output + "]";

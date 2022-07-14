@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="eg" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<title>Show All Available Dishes To User</title>
+<style>
+* {
+	box-sizing: border-box;
+}
+
+textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-top: 6px;
+	margin-bottom: 16px;
+	resize: vertical;
+}
+
+.loginPopup {
+	position: relative;
+	text-align: center;
+	width: 100%;
+}
+
+.formPopup {
+	display: none;
+	position: fixed;
+	left: 45%;
+	top: 5%;
+	transform: translate(-50%, 5%);
+	border: 3px solid #999999;
+	z-index: 9;
+}
+
+.formContainer {
+	max-width: 500px;
+	padding: 20px;
+	background-color: #fff;
+}
+
+.formContainer .btn {
+	padding: 12px 20px;
+	border: none;
+	background-color: #8ebf42;
+	color: #fff;
+	cursor: pointer;
+	width: 100%;
+	margin-bottom: 15px;
+	opacity: 0.8;
+}
+
+.formContainer .cancel {
+	background-color: #cc0000;
+}
+
+.formContainer .btn:hover, .openButton:hover {
+	opacity: 1;
+}
+</style>
+
+</head>
+<body>
+
+	<!-- 		pringting all available dishes -->
+	<section class="container">
+
+		<div class="card">
+
+			<div class="card-body">
+
+				<h1 class="text-center">LIST OF QUESTIONS FOR THIS CONTEST</h1>
+				<table class="table">
+
+					<thead class="thead-dark">
+
+						<tr>
+							<th scope="col">QUESTION_ID</th>
+							<th scope="col">QUESTION</th>							
+							<th scope="col">MORE</th>
+							<th scope="col">GOTO</th>
+						</tr>
+
+					</thead>
+
+					<tbody>
+						<tr th:each=" q:${question}">
+							<td th:text="${q.questionId}"></td>
+							<td th:text="${q.question}"></td>						
+							<td>							
+								<button class="showdetails btn btn-success" id="detail">
+									<strong>Detail</strong>
+								</button><input type="hidden" th:value="${q.questionId}" name="id" id="questionId" ></input>
+							</td>
+							<td>
+								<form action="/solve-challenge" method="post">
+									<input type="hidden" name="questionId" th:value="${q.questionId}"></input>
+									<button type="submit" class="btn btn-success">
+										<strong>Solve</strong>
+									</button>
+								</form>
+							</td>							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+<script>
+	var testCaseList=[];
+	var i=1;
+	  $(".showdetails").on("click", function() {		     
+			var Id = $(this).closest("td").find("#questionId").val();	  		
+	  		console.log("closest : ",Id);
+	  		$.ajax({
+				url : "/idforquestiondetail",
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				method : "POST",
+				data : JSON.stringify(Id),
+
+				success : function(response) {
+					//console.log(response.status);
+					console.log(response.questionID);
+					window.location.href = "questiondetail";
+				},
+
+				error : function(error) {
+					console.log(error);
+				},
+
+			});
+	  });
+		
+		function closeForm() {
+			document.getElementById("popupForm").style.display = "none";
+			$.ajax({
+				url : "/add-test-cases-api",
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				method : "POST",
+				data : JSON.stringify(testCaseList),
+
+				success : function(response) {
+					//console.log(response.status);
+					console.log(response.output);
+				},
+
+				error : function(error) {
+					console.log(error);
+				},
+
+			});
+		}
+
+	</script>
+</body>
+</html>

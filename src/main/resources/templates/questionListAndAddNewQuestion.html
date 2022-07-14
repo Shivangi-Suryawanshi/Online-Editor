@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="eg" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Question</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</head>
+
+<body class="body1">
+    <section class="section4">
+        <div class="overla">
+            <div class="container-fluid container_contest">
+                <div class="nav mt-4 bg_white1">
+                    <div class="left mx-5 mt-1">
+                        <img src="images/Grouplogo.svg" alt="logo" class="mb-2" width="60" height="70" />
+                        <p class="logo-text">WEBKORPS</p>
+                    </div>
+                    <div class="right1 mx-4">
+                        <div class="me-5">
+                            <div class=" share_btn text-center text-white pt-2 fw-bold ">
+                                Share
+                            </div>
+
+                        </div>
+                        <img src="images/Rectangle.svg" alt="rectangle" height="48px" width="48px" class="me-5" />
+                    </div>
+                </div>
+                <div class="container mx-auto">
+                    <div class="card_scroll1">
+                        <div class="d-flex justify-content-center mt-5">
+
+                            <div class="question2">
+                                <h4 class="text-white text-center  fw-bold  problem_input1 question_size ">
+                                    <a href="returnquestionlistforspecificcontest" class="text-decoration-none text-white">Questions</a>
+                                </h4>
+                            </div>
+
+
+                            <div class="">
+                                <div class="answer2">
+                                    <h4 class="text-white text-center  fw-bold  problem_input1 question_size">
+                                        <a href="viewparticipators" class="text-decoration-none text-dark">Participators</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="div_card_white mx-auto mt-5 pt-4">
+                            <div class="div_card_inner_white mx-auto">
+
+                                <div class="row">
+                                    <div class="col-md-1 div_card_inner_blue"></div>
+                                    <div class="col-md-7 second-div">
+                                        <div class="col">
+                                            <input type="hidden" th:id="${contestId}" class="contestid"
+                                                th:value="${contestId}"></input>
+                                                 <input type="hidden"
+                                                th:id="${contestLevel}" class="contestlevel"
+                                                th:value="${contestLevel}"></input>
+
+                                            <p>
+                                                <label class="fw-bold  text-dark  problem_input1 ">Write
+                                                    Problem statement</label>
+                                            </p>
+                                            <input type="text"
+                                                class="aboutQuestion form-control problem_input2 bg-white" id="aboutQuestiondata"
+                                                placeholder="Write Problem statement here" />
+                                            <div class="pen_img">
+                                                <div class="">
+                                                    <img class="" src="images/pen.svg" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col">
+
+                                            <p>
+                                                <label class="fw-bold  text-dark problem_input1">Constraints</label>
+                                            </p>
+                                            <input type="text"
+                                                class="aboutConstraints form-control problem_input2 bg-white"
+                                                placeholder="Write Constraints here" id="aboutConstraints"/>
+                                            <div class="pen_img">
+                                                <div class="">
+                                                    <img class="" src="images/pen.svg" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col third-div me-5 get_border_bottom">
+                                            <div class="col  ">
+                                                <label class="fw-bold  text-dark  problem_input1">Sample
+                                                    Input</label> <input type="text"
+                                                    class="aboutSampleInput form-control problem_input1 bg-white"
+                                                    placeholder="input here" id="aboutSampleInput" />
+                                                <div class="pen_img1">
+                                                    <div class="">
+                                                        <img class="" src="images/pen.svg" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div>
+                                                    <label class="fw-bold  text-dark problem_input_label">Sample
+                                                        Output </label> <input type="text"
+                                                        class="aboutSampleOutput f bg-white input_margin1 form-control"
+                                                        placeholder="output here" id="aboutSampleOutput"/>
+                                                    <div class="pen_img3">
+                                                        <div class="">
+                                                            <img class="" src="images/pen.svg" />
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="    text-center text-white fw-bold pt-2 mx-5  ">
+                                            <button class="addQuestionBtn question_btn btn btn-primary">Add
+                                                Question</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 border1 ">
+                                        <div class="row row_div1">
+                                            <div class="col third-div">
+                                                <div class="col ">
+                                                    <label class="fw-bold text-dark  problem_input1">
+                                                        Input</label>
+                                                    <textarea class="testCaseInput form-control problem_input3 bg-white"
+                                                        placeholder="input here"></textarea>
+                                                </div>
+                                                <div class="col ">
+                                                    <label class="fw-bold text-dark  problem_input1  output_label1"
+                                                        style="margin-left: -68px"> Output </label>
+                                                    <textarea
+                                                        class="testCaseOutput form-control problem_input3 bg-white output_input1"
+                                                        placeholder="output here"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="col mt-5">
+                                                    <label class="fw-bold text-dark problem_input1">
+                                                        Test case List</label>
+                                                    <div class="  third-div1 input_ouput_scroll1 ">
+                                                        <div class=" d-flex justify-content-center">
+                                                            <div class="mx-5">Input</div>
+
+                                                            <div class="mx-5">Output</div>
+                                                        </div>
+                                                        <div>
+                                                            <ul class="inputOutputList">
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-end add_close_btn">
+                                                    <div>
+                                                        <button
+                                                            class="addMoreIO Add1  text-center text-white fw-bold pt-2 mx-3 btn btn-primary">
+                                                            Add</button>
+                                                    </div>
+                                                    <div>
+                                                        <button
+                                                            class="close1  text-center text-white fw-bold pt-2 btn btn-primary">
+                                                            close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="save_contest_upper ">
+                                <div class=" ">
+                                    <button
+                                        class="save_contest mt-4 text-center text-white fw-bold mx-5 btn btn-primary">Save
+                                        Contest</button>
+                                </div>
+                                <button
+                                    class="contest_delete mt-4 text-center text-white fw-bold pt-2  btn btn-primary ">
+                                    Delete</button>
+
+                            </div>
+                            <div>
+                                <div class="question_box">
+                                    <h3 class="mx-4 pt-4 fw-bold text-dark">Added Questions</h3>
+                                </div>
+                                <div class="added_questions overflow-y-scroll ">
+                                <div th:each="q:${questions}">
+                                <div th:class="${q.questionId}">
+                                    <div class="added_question_box row mx-4 mt-3"  >
+                                        <div class="col-8">
+                                            <p class="added_question_box_text">
+                                                <span class="added_question_box_text" th:text="${q.question}"></span>
+                                            </p>
+                                        </div>
+                                        <div class="col-3 ">
+                                            <input type="hidden" id="hiddenQid" class="questionid"
+                                                th:value="${q.questionId}"></input>
+                                            <p class="Edit_Question  mx-5">Edit Question</p>
+                                        </div>
+                                        <div class="col-1 mt-3 btn_img_cross" th:id="${q.questionId}" onclick="deleteQuestion(this.id)">
+                                            <img src="images/crossbtn.svg" alt="logo" />
+                                        </div>
+                                   </div>
+                                    </div>
+                                   </div> 
+                                </div>                               
+                            </div>
+                            <div class="copyright_text_question">
+                            <p  class="text-center text-dark fw-bold mt-5">
+                                Copyright@webkorps2021</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+               </div>    
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script>
+    
+        var liId = 1;
+        var updatedQuestionId="";
+        $(".addMoreIO").on("click", function () {
+            var input = $(".testCaseInput").val();
+            var output = $(".testCaseOutput").val();
+            console.log(input);
+            console.log(output);
+            var data = '<li class="removeCurrentIOli1 listStyle">';
+            data += '<textarea class="form-control textarea_1 bg-white mx-3" readonly="readonly" id="input" name="dataOfIO">' + input + '</textarea><textarea class="form-control textarea_1 bg-white" id="output" readonly="readonly" name="dataOfIO">' + output + '</textarea> <div class="btn_img_cross" id="' + liId + '" onclick="removeCurrentIOli(this.id)" ><img src="images/crossbtn.svg" class=" mx-3 mt-2" alt="cross" height="20px" width="20px" /></div></li>';
+            liId++;
+            $('.inputOutputList').append(data);
+            var testCaseValue = document.getElementsByName('dataOfIO');
+            testCaseValue.forEach(element => {
+                console.log(element.value);
+            });
+
+        });
+
+
+        $(".addQuestionBtn").on("click", function () {
+            var testCaseList = [];
+            var data;
+            var SampleTestCaseList = [];
+            var sampleTestCase;
+            var i = 1;
+            var id = 1;
+            var input, output;
+            var testCaseValue = document.getElementsByName('dataOfIO');
+            testCaseValue.forEach(element => {
+                if (i == 1) {
+                    if (element.value != null) {
+                        input = element.value;
+                        i++;
+                    }
+                } else if (i == 2) {
+                    if (element.value != null) {
+                        output = element.value;
+                        data = {
+                            'id': id,
+                            'input': input,
+                            'output': output
+                        };
+                        testCaseList.push(data);
+                        id++;
+                    }
+                    i = 1;
+                }
+            });
+
+            sampleTestCase = {
+                'constraints': $(".aboutConstraints").val(),
+                'input': $(".aboutSampleInput").val(),
+                'output': $(".aboutSampleOutput").val()
+            };
+            SampleTestCaseList.push(sampleTestCase);
+            console.log(SampleTestCaseList);
+            var Question = {
+            	"questionId":updatedQuestionId,
+                "contestId": $(".contestid").val(),
+                "contestLevel": $(".contestlevel").val(),
+                "question": $(".aboutQuestion").val(),
+                "sampleTestCase": SampleTestCaseList,
+                "testcases": testCaseList
+            };
+
+            $.ajax({
+                url: "/savequestion",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                method: "POST",
+                data: JSON.stringify(Question),
+                success: function (response) {
+                    console.log(response);
+                    var data = '';
+                    window.location.href = "returnquestionlistforspecificcontest";
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+
+            });
+
+        });
+        function removeCurrentIOli(temp) {
+            $("#" + temp).closest("li").remove();
+        }
+    
+        function deleteQuestion(divId) {  
+        	console.log("===>",divId);
+        	var qid=divId;
+        	var pDoc = document.getElementById(divId);
+        	pDoc.parentNode.remove();
+        	 $.ajax({
+                 url: "/deletequestion",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 method: "POST",
+                 data: JSON.stringify(qid),
+                 success: function (response) {
+                    
+                 },
+                 error: function (error) {
+                     console.log(error);
+                 },
+
+             });
+        }
+
+ $(".Edit_Question").on("click", function () {
+	 $(".removeCurrentIOli1").remove();
+	//console.log($(this).closest("div").find("#hiddenQid").val());
+	 var qid=$(this).closest("div").find("#hiddenQid").val();
+	 console.log("===>",qid);
+	 $.ajax({
+         url: "/getsavedquestion",
+         contentType: "application/json; charset=utf-8",
+         dataType: "json",
+         method: "POST",
+         data: JSON.stringify(qid),
+         success: function (response) {
+        	updatedQuestionId = response.questionId.valueOf();
+            console.log("Q1. ",response.question);
+            var t=response.question;           
+            console.log("Q2. ",t);                         
+            document.getElementById("aboutQuestiondata").value = response.question.valueOf();
+            document.getElementById("aboutConstraints").value = response.question.valueOf();
+            t=response.sampleTestCase.valueOf();
+            t.forEach(element => {  
+            document.getElementById("aboutConstraints").value = element.constraints.valueOf();
+            document.getElementById("aboutSampleInput").value = element.input.valueOf();
+            document.getElementById("aboutSampleOutput").value = element.output.valueOf();
+            });
+            t=response.testcases.valueOf();
+            t.forEach(element => {
+            	var data = '<li class="removeCurrentIOli1 listStyle">';
+                data += '<textarea class="form-control textarea_1 bg-white mx-3" id="input" name="dataOfIO">' + element.input.valueOf() + '</textarea><textarea class="form-control textarea_1 bg-white" id="output" name="dataOfIO">' + element.output.valueOf() + '</textarea> <div class="btn_img_cross" id="' + response.questionId.valueOf() + '" onclick="removeCurrentIOli(this.id)" ><img src="images/crossbtn.svg" class=" mx-3 mt-2" alt="cross" height="20px" width="20px" /></div></li>';          
+                $('.inputOutputList').append(data);
+            });
+            
+         },
+         error: function (error) {
+             console.log(error);
+         },
+
+     });
+	// document.getElementById("aboutQuestiondata").value = "My value";
+ })
+ 
+ 
+    </script>
+</body>
+
+</html>

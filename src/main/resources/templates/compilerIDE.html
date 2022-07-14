@@ -1,39 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"></meta>
-    <title>Codeboard Online IDE</title>
+<html lang="eg" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
-    <link rel="stylesheet" href="css/style.css" />
+<head>
+<meta charset="UTF-8"></meta>
+
+<title>Codeboard Online IDE</title>
+<link rel="stylesheet" href="css/style.css" />
+
+<style>
+#para {
+	color: #576871;
+	font: 16px OpenSans, Arial, Helvetica, sans-serif;
+	margin: 5px 0px 0px;
+	white-space: pre-line;
+}
+
+h3 {
+	text-align: center;
+	font: 20px openSans, Arial, Helvetica, sans-serif;
+	text-decoration: underline;
+}
+
+hr {
+	width: 50%;
+	text-align: left;
+	margin-left: 0;
+}
+
+.data {
+	width: 50%;
+	text-align: left;
+	margin-left: 0;
+}
+.parent {
+  display: flex; 
+  
+}
+.child {
+   flex: 1;
+  padding: 1em;
+  border: solid; 
+}
+</style>
 </head>
 <body>
+	<div class='parent'>
+		<div class='child'>
+			<h3>Solve Challenge here</h3>
+			<div class="data">
+				<input type="hidden" th:value="${question.questionId}"  name="id" id="questionId" /> 
+				<strong> Problem Statement </strong>
+				
+				<p th:text="${question.question}" id="para"></p>
+				<br></br> <strong> Constraints </strong>
+				
+				<p th:text="${stc.constraints}" id="para"></p>
+				<br></br> <strong> Sample Input </strong>
+				
+				<p th:text="${stc.input}" id="para"></p>
+				<br></br> <br></br> <strong> Sample Output </strong>
+				
+				<p th:text="${stc.output}" id="para"></p>
+				<br></br> <br></br>
+			</div>
+		</div>
+		<div class='child'>
+			<div class="header">Code Compiler</div>
+			<div class="control-panel">
+				Select Language: &nbsp; &nbsp; <select id="languages"
+					class="languages" onchange="changeLanguage()">
+					<option value="c">C</option>
+					<option value="cpp">C++</option>
+					<option value="java">Java</option>
+					<option value="python">Python</option>
+				</select>
+			</div>
+			<div class="editor" id="editor"></div>
 
-    <div class="header"> Code Compiler </div>
-    <div class="control-panel">
-        Select Language:
-        &nbsp; &nbsp;
-        <select id="languages" class="languages" onchange="changeLanguage()">
-            <option value="c"> C </option>
-            <option value="cpp"> C++ </option>
-            <option value="java"> Java </option>
-            <option value="python"> Python </option>          
-        </select>
-    </div>
-    <div class="editor" id="editor"></div>
+			<div class="button-container">
+			<button class="btn" onclick="setFlagForTest()"   id="test" value="test" >Test</button>
+				<button class="btn" onclick="setFlagForSubmit()" id="submit" value="submit">Submit</button>
+			</div>
 
-    <div class="button-container">
-        <button class="btn" onclick="executeCode()"> Run </button>
-    </div>
+			<div class="output" id="output"></div>
+		</div>
+	</div>
+	<script type="text/javascript"
+		src="http://code.jquery.com/jquery-1.11.1.js"></script>
+	<script type="text/javascript"
+		src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/jquery.validate.js"></script>
+	<script type="text/javascript"
+		src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/additional-methods.js"></script>
 
-    <div class="output" id="output"></div>
- <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/jquery.validate.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.12.0/additional-methods.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/lib/ace.js"></script>
-    <script src="js/lib/theme-monokai.js"></script>
-    <script src="js/texteditor.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="js/lib/ace.js"></script>
+	<script src="js/lib/theme-monokai.js"></script>
+	<script src="js/texteditor.js"></script>
 
 </body>
 </html>

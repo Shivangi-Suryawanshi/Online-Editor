@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="eg" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<title>Show Test cases</title>
+<style>
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
+	text-align: center;
+}
+
+input[type=text], select, textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-top: 6px;
+	margin-bottom: 16px;
+	resize: vertical;
+}
+
+input[type=submit] {
+	background-color: #04AA6D;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+.container {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+</style>
+
+</head>
+<body>
+<section class="container">
+	<div class="card">
+<div class="card-body">
+		
+
+				<h2>Add Test Case for newly added question...</h2>
+				<br></br>
+				<hr>	<input type="hidden" name="questionId" id="questionId" th:value="${question}"></input>
+						<input type="hidden" th:value="${currentContestId}" id="contestId" name="contestId"></input>
+				<label for="subject">INPUT</label>
+				<textarea id="subject" name="input" class="input"
+					placeholder="Write input here..." style="height: 100px"></textarea>
+
+				<label for="subject">OUTPUT</label>
+				<textarea id="subject" name="output" class="output"
+					placeholder="Write output here..." style="height: 100px"></textarea>
+
+				<button type="submit" class="btn" onclick="addTestCases()">add</button>
+				<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </hr>
+		
+		
+		</div>
+
+	</div>
+
+</section>
+
+	<script>
+	var testCaseList=[];
+	var i=1;
+	/*	function openForm() {
+			document.getElementById("popupForm").style.display = "block";
+		}*/
+		function closeForm() {
+			//document.getElementById("popupForm").style.display = "none";
+			$.ajax({
+				url : "/add-test-cases-api",
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				method : "POST",
+				data : JSON.stringify(testCaseList),
+
+				success : function(response) {					
+					window.location.href = "questions";
+				},
+
+				error : function(error) {
+					console.log(error);
+				},
+
+			});
+		}
+
+		function addTestCases() {
+			var questionId = $("#questionId").val();
+			console.log("qid",questionId);
+			console.log("cid",$("#contestId").val());
+			console.log($(".input").val());
+			console.log($(".output").val());
+			var data = {
+				'id' : questionId,
+				'input' : $(".input").val(),
+				'output' : $(".output").val()
+			};
+			testCaseList.push(data);
+			console.log(testCaseList);
+			i++;
+		}
+	</script>
+</body>
+</html>

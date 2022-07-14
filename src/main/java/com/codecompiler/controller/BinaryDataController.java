@@ -25,29 +25,30 @@ public class BinaryDataController {
 
 	String fileId = "";
 
-	@GetMapping("/saveFiles")
-	public String saveFile() throws FileNotFoundException {
+	//@GetMapping("/saveFiles")
+	public String saveFile(String fileNameInDB, String fileName) throws FileNotFoundException {
 		// define metadata
 		DBObject metaData = new BasicDBObject();
 		metaData.put("organization", "Java Techie");
 		metaData.put("type", "data");
-		fileId = gridFsOperations.store(new FileInputStream("C:\\Users\\Public\\Montrix\\CodeCompiler\\src\\main\\resources\\temp\\output.txt"), "output.txt","text/plain", metaData).getId().toString();
+		fileId = gridFsOperations.store(new FileInputStream("C:\\Users\\Public\\Montrix\\CodeCompiler\\src\\main\\resources\\temp\\"+fileName), fileNameInDB+".txt","text/plain", metaData).getId().toString();
 		System.out.println("File id stored : " + fileId);
+		
 		return "File stored successfully...";
 	}
 
 	@GetMapping("/retrive/text")
-	public String retriveTextFile() throws IOException {
-		GridFSDBFile dbFile = gridFsOperations.findOne(new Query(Criteria.where("_id").is(fileId)));
-		dbFile.writeTo("C:\\Users\\Public\\Montrix\\CodeCompiler\\src\\main\\resources\\static\\participators\\myData.txt");
+	public String retriveTextFileFromDB(String participantId) throws IOException {
+		GridFSDBFile dbFile = gridFsOperations.findOne(new Query(Criteria.where("filename").is(participantId)));
+		dbFile.writeTo("C:\\Users\\Public\\Montrix\\CodeCompiler\\src\\main\\resources\\participantsData\\myData.txt");
 		System.out.println("File name : " + dbFile.getFilename());
 		return "Text File retrived with name : " + dbFile.getFilename();
 	}
 
 
 	@DeleteMapping("/delete/text")
-	public String deleteTextFile() throws IOException {
-		File f= new File("C:\\Users\\Public\\Montrix\\CodeCompiler\\src\\main\\resources\\static\\participators\\myData.txt");
+	public String deleteTextFile(String fileName) throws IOException {
+		File f= new File("C:\\Users\\Public\\Montrix\\CodeCompiler\\src\\main\\resources\\temp\\fileName");
 		f.delete();
 		return "Text File Deleted";
 	}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="eg" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<title>Add question with sample-original test cases</title>
+<style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+h3 {
+	text-align: center;
+}
+
+input[type=text], select, textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-top: 6px;
+	margin-bottom: 16px;
+	resize: vertical;
+}
+
+input[type=submit] {
+	background-color: #04AA6D;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+.container {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+</style>
+</head>
+<body>
+
+	<h1 class="text-center">LIST OF QUESTIONS FOR THIS CONTEST</h1>
+
+	<div class="container">
+		<form action="/add-question" method="POST">
+			<input type="hidden" th:value="question.contestId" name="contestId"></input>
+
+			<label for="subject">Question:</label>
+			<p th:text="   ${question.question}" id="question" ></p>
+			<label for="subject">Constraints</label>
+			<p th:text="   ${stc.constraints}" id="constraints"></p>
+			<label for="subject">Sample Input</label>
+			<p th:text="   ${stc.input}" id="sampleinput"></p>
+            <label for="subject">Sample Output</label>
+			<p th:text="   ${stc.output}" id="sampleoutput"></p>
+			</form>
+	</div>
+<section class="container" >
+		<div class="card" align="center">
+			<div class="card-body">
+				<h1 class="text-center">INPUT-OUTPUT FOR CORRESPONDING QUESTION</h1>
+				<table class="table" >
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">INPUT   </th>
+							<th scope="col">     OUTPUT</th>														
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each=" t:${tc}">
+							<td th:text="${t.input}"></td>
+							<td th:text="${t.output}"></td>											
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>
